@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 13:36:53 by tdayde            #+#    #+#             */
-/*   Updated: 2021/03/11 12:14:41 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 00:25:31 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include "get_next_line.h"
 
 typedef struct s_list
 {
@@ -68,7 +69,7 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
-void				*ft_alloc(unsigned long size, t_list **lst);
+void				*calloc_lst(unsigned long size, t_list **lst);
 int					ft_count_words(char *str, char c);
 
 #endif

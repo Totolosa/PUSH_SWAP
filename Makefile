@@ -13,21 +13,15 @@ UNDER   = \033[4m
 SUR     = \033[7m
 
 NAME		= checker
-
-SRCS		=	srcs/checker/checker.c \
-				srcs/checker/check_params.c \
-				srcs/utils.c
-
+SRCS		=	srcs/checker_fold/checker.c \
+				srcs/checker_fold/check_params.c \
+				srcs/utils/utils.c \
+				srcs/utils/ft_atoi_pushswap.c
 OBJS		= ${SRCS:.c=.o}
-
 CC			= gcc
-
 CFLAGS		= -Wall -Werror -Wextra #-fsanitize=address -g3
-
 INCLUDE		= -Iinclude -I${LIBFT}/include
-
 RM			= rm -f
-
 LIBFT		= libft
 
 all:		libft ${NAME}
@@ -54,4 +48,4 @@ fclean:		clean
 re			: fclean all
 
 .PHONY: 	clean fclean all re compil libft
-.SILENT:	clean fclean all re compil ${OBJS} ${NAME} libft
+.SILENT:	clean fclean all re compil ${OBJS} ${NAME} 

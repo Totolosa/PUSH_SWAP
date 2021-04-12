@@ -6,13 +6,13 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 13:56:59 by tdayde            #+#    #+#             */
-/*   Updated: 2021/03/03 17:19:59 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 00:26:10 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_alloc(unsigned long size, t_list **lst)
+void	*calloc_lst(unsigned long size, t_list **lst)
 {
 	t_list	*new;
 	void	*alloc;
@@ -24,6 +24,7 @@ void	*ft_alloc(unsigned long size, t_list **lst)
 		write(1, "Error malloc\n", 13);
 		exit (0);
 	}
+	ft_bzero(alloc, size);
 	new = malloc(sizeof(t_list));
 	if (new == NULL)
 	{

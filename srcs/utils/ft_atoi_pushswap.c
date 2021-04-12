@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atoi_pushswap.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 14:03:48 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/12 23:33:35 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 23:37:39 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	ft_isspace(char c)
 	return (0);
 }
 
-int	ft_atoi(const char *str)
+long long	ft_atoi_pushswap(const char *str)
 {
 	int			i;
 	int			sign;
@@ -40,6 +40,8 @@ int	ft_atoi(const char *str)
 	while (ft_isdigit(str[i]))
 	{
 		result = 10 * result + (str[i] - '0');
+		if (result > 2147483647 || result < -2147483648)
+			return (2147483648);
 		i++;
 	}
 	result *= sign;

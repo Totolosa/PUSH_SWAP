@@ -59,7 +59,7 @@ SRCS		= 	ft_memset.c\
 				ft_lstmap.c\
 				get_next_line.c\
 				get_next_line_utils.c\
-				ft_alloc.c\
+				calloc_lst.c\
 				ft_count_words.c\
 
 SRCS_PATH	= srcs/

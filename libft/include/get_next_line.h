@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 11:59:03 by tdayde            #+#    #+#             */
-/*   Updated: 2021/03/11 13:02:43 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 23:54:39 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 64
+#  define BUFFER_SIZE 128
 # endif
 
 # include <unistd.h>
