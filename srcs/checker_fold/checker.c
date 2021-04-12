@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/07 14:33:58 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/12 18:51:45 by tdayde           ###   ########lyon.fr   */
+/*   Created: 2021/04/08 15:48:03 by tdayde            #+#    #+#             */
+/*   Updated: 2021/04/08 17:46:16 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
+#include "push_swap.h"
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>>
-
-void check_params(int argc, char **argv);
-
-void	fail();
-
-#endif
+int main(int argc, char **argv)
+{
+	check_params(argc, argv);
+	return (0);
+}
