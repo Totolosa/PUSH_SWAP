@@ -16,7 +16,8 @@ NAME		= checker
 SRCS		=	srcs/checker_fold/checker.c \
 				srcs/checker_fold/check_params.c \
 				srcs/utils/utils.c \
-				srcs/utils/ft_atoi_pushswap.c
+				srcs/utils/ft_atoi_pushswap.c \
+				srcs/utils/ft_strdup_pushswap.c
 OBJS		= ${SRCS:.c=.o}
 CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra #-fsanitize=address -g3

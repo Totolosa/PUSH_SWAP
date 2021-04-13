@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_alloc.c                                         :+:      :+:    :+:   */
+/*   calloc_lst.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 13:56:59 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/13 00:26:10 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 15:20:27 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*calloc_lst(unsigned long size, t_list **lst)
 	{
 		ft_lstclear(lst, free);
 		write(1, "Error malloc\n", 13);
-		exit (0);
+		exit (1);
 	}
 	ft_bzero(alloc, size);
 	new = malloc(sizeof(t_list));
@@ -31,7 +31,7 @@ void	*calloc_lst(unsigned long size, t_list **lst)
 		free(alloc);
 		ft_lstclear(lst, free);
 		write(1, "Error malloc\n", 13);
-		exit (0);
+		exit (1);
 	}
 	else
 	{

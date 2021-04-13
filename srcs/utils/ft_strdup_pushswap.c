@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strdup_pushswap.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/08 11:35:55 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/13 15:24:45 by tdayde           ###   ########lyon.fr   */
+/*   Created: 2020/11/23 16:56:03 by tdayde            #+#    #+#             */
+/*   Updated: 2021/04/13 19:11:35 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "push_swap.h"
 
-void	fail(t_lists *list)
+char	*ft_strdup_pushswap(const char *s, t_list **free)
 {
-	ft_putstr_fd("Error\n", STDERR_FILENO);
-	ft_lstclear(&list->free, free);
-	exit (1);;
-}
+	char	*dest;
+	int		i;
 
-void	error_gnl(char **line, t_lists *list)
-{
-	free(*line);
-	fail(list);
+	dest = calloc_lst(sizeof(char) * ft_strlen(s) + 1, free);
+	if (!dest)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		dest[i] = s[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

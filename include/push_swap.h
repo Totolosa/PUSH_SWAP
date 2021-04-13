@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:33:58 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/13 00:19:06 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 19:11:21 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ typedef struct s_lists
 	t_list *free;
 }	t_lists;
 
-int check_params(t_lists *list, int argc, char **argv);
+void		check_params(t_lists *list, int argc, char **argv);
 long long	ft_atoi_pushswap(const char *str);
-int fail(t_lists *list);
-int	error_gnl(char **line, t_lists *list);
+char		*ft_strdup_pushswap(const char *s, t_list **free);
+void		fail(t_lists *list);
+void		error_gnl(char **line, t_lists *list);
 
 #endif
