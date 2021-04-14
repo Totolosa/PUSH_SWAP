@@ -6,11 +6,10 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 17:45:56 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/13 19:25:50 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/14 17:52:02 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "push_swap.h"
 
 void isaint(t_lists *list, int argc, char **argv)
@@ -26,31 +25,30 @@ void isaint(t_lists *list, int argc, char **argv)
 			j++;
 		while (argv[i][j])
 			if (!ft_isdigit(argv[i][j++]))
-				return (fail(list));
+				fail(list);
 	}
-	return (1);
 }
 
 void create_lists(t_lists *list, int argc, char **argv)
 {
 	int i;
-	int j;
 	
-	list->a = calloc_lst(sizeof(int*) * (argc - 1), &list->free);
+	list->nmax = argc -1;
+	list->na = argc - 1;
+	list->nb = 0;
+	list->a = calloc_lst(sizeof(long *) * (argc - 1), &list->free);
 	if (list->a == NULL)
-		return (fail(list));
-	list->b = calloc_lst(sizeof(int*) * (argc - 1), &list->free);
-	if (list->b == NULL)
-		return (fail(list));
+		fail(list);
 	i = 0;
-	j = 0;
 	while (++i < argc)
-		list->a[j++] = ft_atoi_pushswap(argv[i]);
+		list->a[i - 1] = ft_atoi_pushswap(argv[i]);
+	list->b = calloc_lst(sizeof(long *) * (argc - 1), &list->free);
+	if (list->b == NULL)
+		fail(list);
 	i = -1;
 	while (++i < argc - 1)
 		if (list->a[i] < INT_MIN || list->a[i] > INT_MAX)
-			return (fail(list));
-	return (1);
+			fail(list);
 }
 
 void is_dup(t_lists *list, int argc)
@@ -67,12 +65,11 @@ void is_dup(t_lists *list, int argc)
 		j = i;
 		while (++j < argc - 1)
 			if (list->a[i] == list->b[j])
-				return (fail(list));
+				fail(list);
 	}
 	i = -1;
 	while (++i < argc - 1)
-		list->b[i] = 0;
-	return (1);
+		list->b[i] = NAN;
 }
 
 char **update_list_inst(char **line, t_lists *list)
@@ -80,13 +77,16 @@ char **update_list_inst(char **line, t_lists *list)
 	char	**new;
 	int		i;
 
-	new = calloc_lst((list->n_inst + 1) * sizeof(char *), &list->free);
-	i = -1;
-	if (list->n_inst > 0)
-		while (++i < list->n_inst)
-			new[i] = list->inst[i];
-	new[i] = ft_strdup_pushswap(line, &list->free);
-	list->n_inst++;
+	new = calloc_lst((list->n_ins + 1) * sizeof(char *), &list->free);
+	i = 0;
+	if (list->n_ins > 0)
+		while (i < list->n_ins)
+		{
+			new[i] = list->ins[i];
+			i++;
+		}
+	new[i] = ft_strdup_pushswap(*line, &list->free);
+	list->n_ins++;
 	free(*line);
 	*line = NULL;
 	return (new);
@@ -101,39 +101,46 @@ void create_list_inst(t_lists *list)
 	ret = get_next_line(STDIN_FILENO, &line);
 	while (ret > 0)
 	{
-		list->inst = update_list_inst(&line, list);
+		list->ins = update_list_inst(&line, list);
 		ret = get_next_line(STDIN_FILENO, &line);
 	}
 	if (ret == -1)
 		return (error_gnl(&line, list));
-	list->inst = update_list_inst(&line, list);
+	list->ins = update_list_inst(&line, list);
 }
 
-int check_list_inst(t_lists *l)
+void check_list_inst(t_lists *l)
 {
 	int i;
 
-	i = -1;
-	while (++i < l->n_inst)
+	i = 0;
+	while (i < l->n_ins)
 	{
-		if ((l->inst[i][0] == 's' && l->inst[i][1] == 'a' && l->inst[i][2] = 0)
-			|| (l->inst[i][0] == 's' && l->inst[i][1] == 'b' && l->inst[i][2] = 0)
-			|| (l->inst[i][0] == 's' && l->inst[i][1] == 's' && l->inst[i][2] = 0)
-			|| (l->inst[i][0] == 'p' && l->inst[i][1] == 'a' && l->inst[i][2] = 0)
-			|| (l->inst[i][0] == 'p' && l->inst[i][1] == 'b' && l->inst[i][2] = 0)
-			|| (l->inst[i][0] == 'r' && l->inst[i][1] == 'a' && l->inst[i][2] = 0)
-			|| (l->inst[i][0] == 'r' && l->inst[i][1] == 'b' && l->inst[i][2] = 0)
-			|| (l->inst[i][0] == 'r' && l->inst[i][1] == 'r' && l->inst[i][2] = 0)
+		if ((l->ins[i][0] == 's' && l->ins[i][1] == 'a' && l->ins[i][2] == 0)
+			|| (l->ins[i][0] == 's' && l->ins[i][1] == 'b' && l->ins[i][2] == 0)
+			|| (l->ins[i][0] == 's' && l->ins[i][1] == 's' && l->ins[i][2] == 0)
+			|| (l->ins[i][0] == 'p' && l->ins[i][1] == 'a' && l->ins[i][2] == 0)
+			|| (l->ins[i][0] == 'p' && l->ins[i][1] == 'b' && l->ins[i][2] == 0)
+			|| (l->ins[i][0] == 'r' && l->ins[i][1] == 'a' && l->ins[i][2] == 0)
+			|| (l->ins[i][0] == 'r' && l->ins[i][1] == 'b' && l->ins[i][2] == 0)
+			|| (l->ins[i][0] == 'r' && l->ins[i][1] == 'r' && l->ins[i][2] == 0)
+			|| (l->ins[i][0] == 'r' && l->ins[i][1] == 'r' && l->ins[i][2] == 0)
+			|| (l->ins[i][0] == 'r' && l->ins[i][1] == 'r'
+				&& l->ins[i][2] == 'a' && l->ins[i][3] == 0)
+			|| (l->ins[i][0] == 'r' && l->ins[i][1] == 'r'
+				&& l->ins[i][2] == 'b' && l->ins[i][3] == 0)
+			|| (l->ins[i][0] == 'r' && l->ins[i][1] == 'r'
+				&& l->ins[i][2] == 'r' && l->ins[i][3] == 0))
+			i++;
+		else
+			fail(l);
 	}
 }
 
 void check_params(t_lists *list, int argc, char **argv)
 {
-	int ret;
-	char *line;
-	
 	isaint(list, argc, argv);
-	create_list(list, argc, argv);
+	create_lists(list, argc, argv);
 	is_dup(list, argc);
 	create_list_inst(list);
 	check_list_inst(list);

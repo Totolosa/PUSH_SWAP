@@ -1,29 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   s.c                                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/08 15:48:03 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/13 00:49:25 by tdayde           ###   ########lyon.fr   */
+/*   Created: 2021/04/14 11:31:36 by tdayde            #+#    #+#             */
+/*   Updated: 2021/04/14 16:16:25 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "push_swap.h"
 
-int main(int argc, char **argv)
+void sa_inst(t_lists *list)
 {
-	t_lists list;
-	
-	ft_bzero(&list, sizeof(t_lists));
-	if (check_params(&list, argc, argv) == -1)
-		return (-1);
-	return (0);
+	long tmp;
+
+	if (list->na > 1)
+	{
+		tmp = list->a[0];
+		list->a[0] = list->a[1];
+		list->a[1] = tmp;
+	}
 }
 
-// A FAIRE :
-// - finir checker
-// - creer obj pour .o dans libft et dosier general
-// - MAJ LIBFT Github
+void sb_inst(t_lists *list)
+{
+	long tmp;
+
+	if (list->nb > 1)
+	{
+		tmp = list->b[0];
+		list->b[0] = list->b[1];
+		list->b[1] = tmp;
+	}
+}
+
+void ss_inst(t_lists *list)
+{
+	sa_inst(list);
+	sb_inst(list);
+}
