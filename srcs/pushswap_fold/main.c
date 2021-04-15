@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd_pushswap.c                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/26 10:30:44 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/15 15:55:14 by tdayde           ###   ########lyon.fr   */
+/*   Created: 2021/04/15 15:00:19 by tdayde            #+#    #+#             */
+/*   Updated: 2021/04/15 16:15:30 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_putnbr_fd_pushswap(long n, int fd)
+int main(int argc, char **argv)
 {
-	// if (n > INT_MAX || n < INT_MIN)
-	// {
-	// 	write(1, " ", 1);
-	// 	return ;
-	// }
-	if (n < 0)
-	{
-		ft_putchar_fd('-', fd);
-		n *= -1;
-	}
-	if (n <= 9)
-		ft_putchar_fd(n + '0', fd);
-	if (n > 9)
-	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putnbr_fd(n % 10, fd);
-	}
+	t_lists list;
+	
+	setbuf(stdout, NULL);
+	ft_bzero(&list, sizeof(t_lists));
+	isaint(&list, argc, argv);
+	create_lists(&list, argc, argv);
+	is_dup(&list, argc);
+	generate_list_inst(&list);
+	print_instructions(list);
+	return (0);
 }

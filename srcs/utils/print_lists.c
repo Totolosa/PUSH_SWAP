@@ -1,27 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   print_lists.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 11:35:55 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/13 15:24:45 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/15 16:54:39 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "push_swap.h"
 
-void	fail(t_lists *list)
+static void	init_max(int *max, t_lists list)
 {
-	ft_putstr_fd("Error\n", STDERR_FILENO);
-	ft_lstclear(&list->free, free);
-	exit (1);;
+	if (list.na >= list.nb)
+		*max = list.na;
+	else 
+		*max = list.nb;
 }
 
-void	error_gnl(char **line, t_lists *list)
+void	print_lists(t_lists list)
 {
-	free(*line);
-	fail(list);
+	int i;
+	int j;
+	int k;
+	int max;
+
+	init_max(&max, list);
+	i = -1;
+	j = 0;
+	k = 0;
+	while (++i < max)
+	{
+		if (i >= max - list.na)
+			ft_putnbr_fd_pushswap(list.a[j++], STDOUT_FILENO);
+		else
+			write(1, " ", 1);
+		write(1, " ", 1);
+		if (i >= max - list.nb)
+			ft_putnbr_fd_pushswap(list.b[k++], STDOUT_FILENO);
+		else
+			write(1, " ", 1);
+		write(1, "\n", 1);
+	}
+	write(1, "- -\na b\n", 8);
 }

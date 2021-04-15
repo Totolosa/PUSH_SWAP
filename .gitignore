@@ -1,6 +1,6 @@
 .DS_Store
 .vscode/
-*.o
+objs/
 *.a
 checker
 push_swap

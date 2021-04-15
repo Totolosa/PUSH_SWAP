@@ -6,42 +6,11 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 15:48:03 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/14 19:11:40 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/15 16:16:24 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void print_lists(t_lists list)
-{
-	int i;
-	int j;
-	int k;
-	int max;
-
-	if (list.na >= list.nb)
-		max = list.na;
-	else 
-		max = list.nb;
-	i = -1;
-	j = 0;
-	k = 0;
-	while (++i < max)
-	{
-		if (i >= max - list.na)
-			ft_putnbr_fd_pushswap(list.a[j++], STDOUT_FILENO);
-		else
-			write(1, " ", 1);
-		write(1, " ", 1);
-		if (i >= max - list.nb)
-			ft_putnbr_fd_pushswap(list.b[k++], STDOUT_FILENO);
-		else
-			write(1, " ", 1);
-		write(1, "\n", 1);
-	}
-	write(1, "- -\n", 4);
-	write(1, "a b\n", 4);
-}
 
 int main(int argc, char **argv)
 {
@@ -49,7 +18,11 @@ int main(int argc, char **argv)
 	
 	setbuf(stdout, NULL);
 	ft_bzero(&list, sizeof(t_lists));
-	check_params(&list, argc, argv);
+	isaint(&list, argc, argv);
+	create_lists(&list, argc, argv);
+	is_dup(&list, argc);
+	create_list_inst(&list);
+	check_list_inst(&list);
 	check_if_ok(&list);
 	print_lists(list);
 
@@ -84,6 +57,7 @@ int main(int argc, char **argv)
 }
 
 // A FAIRE :
-// - finir checker => OK
-// - creer obj pour .o dans libft et dosier general
+// - finir checker --> OK
+// - creer obj pour .o dans libft et dosier general --> OK
+// - algo pushswap
 // - MAJ LIBFT Github

@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd_pushswap.c                            :+:      :+:    :+:   */
+/*   print_instructions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/26 10:30:44 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/15 15:55:14 by tdayde           ###   ########lyon.fr   */
+/*   Created: 2021/04/15 16:23:02 by tdayde            #+#    #+#             */
+/*   Updated: 2021/04/15 17:44:43 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_putnbr_fd_pushswap(long n, int fd)
+void	print_instructions(t_lists list)
 {
-	// if (n > INT_MAX || n < INT_MIN)
-	// {
-	// 	write(1, " ", 1);
-	// 	return ;
-	// }
-	if (n < 0)
+	int i;
+
+	i = -1;
+	while (++i < list.n_ins)
 	{
-		ft_putchar_fd('-', fd);
-		n *= -1;
+		write(1, list.ins[i], ft_strlen(list.ins[i]));
+		write(1, "\n", 1);
 	}
-	if (n <= 9)
-		ft_putchar_fd(n + '0', fd);
-	if (n > 9)
-	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putnbr_fd(n % 10, fd);
-	}
+	return ;
 }

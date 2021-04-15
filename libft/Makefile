@@ -12,88 +12,85 @@ BOLD    = \033[1m
 UNDER   = \033[4m
 SUR     = \033[7m
 
-NAME		= libft.a
+NAME			= libft.a
+SRCS			= 	ft_memset.c\
+					ft_bzero.c\
+					ft_memcpy.c\
+					ft_memccpy.c\
+					ft_memmove.c\
+					ft_memchr.c\
+					ft_memcmp.c\
+					ft_strlen.c\
+					ft_isalpha.c\
+					ft_isdigit.c\
+					ft_isalnum.c \
+					ft_isascii.c\
+					ft_isprint.c\
+					ft_toupper.c\
+					ft_tolower.c\
+					ft_strchr.c\
+					ft_strrchr.c\
+					ft_strncmp.c\
+					ft_strlcpy.c\
+					ft_strlcat.c\
+					ft_strnstr.c\
+					ft_atoi.c\
+					ft_calloc.c\
+					ft_strdup.c\
+					ft_substr.c\
+					ft_strjoin.c\
+					ft_strtrim.c\
+					ft_split.c\
+					ft_itoa.c\
+					ft_strmapi.c\
+					ft_putchar_fd.c\
+					ft_putstr_fd.c\
+					ft_putendl_fd.c\
+					ft_putnbr_fd.c\
+					ft_lstnew.c\
+					ft_lstadd_front.c\
+					ft_lstsize.c\
+					ft_lstlast.c\
+					ft_lstadd_back.c\
+					ft_lstdelone.c\
+					ft_lstclear.c\
+					ft_lstiter.c\
+					ft_lstmap.c\
+					get_next_line.c\
+					get_next_line_utils.c\
+					calloc_lst.c\
+					ft_count_words.c
+SRCS_PATH		= srcs/
+SRCS_LOC		= $(addprefix $(SRCS_PATH),$(SRCS))
+OBJS			= $(SRCS_LOC:srcs/%.c=$(OBJS_DIR)/%.o)
+OBJS_DIR		= objs
+CC          	= gcc
+CFLAGS      	= -Wall -Werror -Wextra
+INCLUDE			= include
+RM          	= rm -rf
+MKDIR			= mkdir -p
 
-SRCS		= 	ft_memset.c\
-				ft_bzero.c\
-				ft_memcpy.c\
-				ft_memccpy.c\
-				ft_memmove.c\
-				ft_memchr.c\
-				ft_memcmp.c\
-				ft_strlen.c\
-				ft_isalpha.c\
-				ft_isdigit.c\
-				ft_isalnum.c \
-				ft_isascii.c\
-				ft_isprint.c\
-				ft_toupper.c\
-				ft_tolower.c\
-				ft_strchr.c\
-				ft_strrchr.c\
-				ft_strncmp.c\
-				ft_strlcpy.c\
-				ft_strlcat.c\
-				ft_strnstr.c\
-				ft_atoi.c\
-				ft_calloc.c\
-				ft_strdup.c\
-				ft_substr.c\
-				ft_strjoin.c\
-				ft_strtrim.c\
-				ft_split.c\
-				ft_itoa.c\
-				ft_strmapi.c\
-				ft_putchar_fd.c\
-				ft_putstr_fd.c\
-				ft_putendl_fd.c\
-				ft_putnbr_fd.c\
-				ft_lstnew.c\
-				ft_lstadd_front.c\
-				ft_lstsize.c\
-				ft_lstlast.c\
-				ft_lstadd_back.c\
-				ft_lstdelone.c\
-				ft_lstclear.c\
-				ft_lstiter.c\
-				ft_lstmap.c\
-				get_next_line.c\
-				get_next_line_utils.c\
-				calloc_lst.c\
-				ft_count_words.c\
+all:			$(NAME)
 
-SRCS_PATH	= srcs/
+$(OBJS_DIR):
+				$(MKDIR) $(OBJS_DIR)
 
-SRCS_LOC	= $(addprefix $(SRCS_PATH),$(SRCS))
+$(NAME):		$(OBJS_DIR) $(OBJS)
+				@printf "\n"
+				ar rcs $@ $(OBJS)
+				@printf "$(BOLD)${GREEN}--> libft.a generated <--${END}\n"
 
-OBJS		= $(SRCS_LOC:.c=.o)
-
-CC          = gcc
-
-CFLAGS      = -Wall -Werror -Wextra
-
-INCLUDE		= include
-
-RM          = rm -f
-
-all:		$(NAME)
-
-$(NAME):	$(OBJS)
-			@printf "\n"
-			ar rcs $@ $^
-			@printf "$(BOLD)${GREEN}--> libft.a generated <--${END}\n"
-
-%.o:		%.c $(INCLUDE)/*.h
-			@$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
-			@printf "\033[2K\rcompilation $<"
+$(OBJS_DIR)/%.o:srcs/%.c $(INCLUDE)/*.h
+				@$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
+				@printf "\033[2K\rcompilation $<"
 
 clean:
-			$(RM) $(OBJS)
+				$(RM) $(OBJS)
 
-fclean:		clean
-			$(RM) $(NAME)
+fclean:			clean
+				$(RM) $(NAME) $(OBJS_DIR)
 
-re:			fclean all
+re:				fclean all
 
-.PHONY: 	clean fclean all re
-.SILENT:	clean fclean all re compil ${OBJS} ${NAME} 
+.PHONY: 		clean fclean all re
+.SILENT:		clean fclean all re ${NAME} $(OBJS_DIR)
