@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:20:40 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/15 18:04:53 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/15 18:24:06 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,19 @@ static char	**add_one_ins(char *new_inst, t_lists *list)
 
 void	generate_list_inst(t_lists *list)
 {
-	(void)list;
+	int i;
+
+	i = -1;
+	while (++i < list->nmax - 1)
+	{
+		if (list->a[i] > list->a[i + 1])
+			list->ins = add_one_ins("sa", list);
+		list->ins = add_one_ins("pb", list);
+	}
 	
-	list->ins = add_one_ins("rra", list);
-	list->ins = add_one_ins("pb", list);
-	list->ins = add_one_ins("sa", list);
-	list->ins = add_one_ins("rra", list);
-	list->ins = add_one_ins("pa", list);
-//	write(1, "rra\npb\nsa\nrra\npa\n", 17);
+	// list->ins = add_one_ins("rra", list);
+	// list->ins = add_one_ins("pb", list);
+	// list->ins = add_one_ins("sa", list);
+	// list->ins = add_one_ins("rra", list);
+	// list->ins = add_one_ins("pa", list);
 }
