@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 15:00:19 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/15 16:15:30 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/16 17:08:46 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int main(int argc, char **argv)
 	is_dup(&list, argc);
 	generate_list_inst(&list);
 	print_instructions(list);
+	ft_lstclear(&list.free, free);
 	return (0);
 }

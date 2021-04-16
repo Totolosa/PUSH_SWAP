@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 15:48:03 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/15 16:16:24 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/16 17:20:12 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,34 +24,12 @@ int main(int argc, char **argv)
 	create_list_inst(&list);
 	check_list_inst(&list);
 	check_if_ok(&list);
+
+	printf("\nInstruction :\n");
+	print_instructions(list);
+	printf("\nLists :\n");
 	print_lists(list);
 
-	// printf("\nExec sa :\n");
-	// sa_inst(&list);
-	// print_lists(list);
-	// printf("\nExec sb :\n");
-	// sb_inst(&list);
-	// print_lists(list);
-	// printf("\nExec ss :\n");
-	// ss_inst(&list);
-	// print_lists(list);
-	// printf("\nExec pb pb pb pb :\n");
-	// pb_inst(&list);
-	// pb_inst(&list);
-	// pb_inst(&list);
-	// pb_inst(&list);
-	// print_lists(list);
-	// printf("\nExec pa :\n");
-	// pa_inst(&list);
-	// print_lists(list);
-	// printf("\nExec ra rb :\n");
-	// ra_inst(&list);
-	// rb_inst(&list);
-	// print_lists(list);
-	// printf("\nExec rra rrb :\n");
-	// rra_inst(&list);
-	// rrb_inst(&list);
-	// print_lists(list);
 	ft_lstclear(&list.free, free);
 	return (0);
 }

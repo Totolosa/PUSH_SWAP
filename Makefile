@@ -15,8 +15,7 @@ SUR     = \033[7m
 NAME_CHECK		= checker
 NAME_PUSH		= push_swap
 SRCS_PUSH		=	srcs/pushswap_fold/main.c \
-					srcs/pushswap_fold/generate_list_inst.c \
-					srcs/pushswap_fold/print_instructions.c
+					srcs/pushswap_fold/generate_list_inst.c 
 SRCS_CHECK		= 	srcs/checker_fold/main.c \
 					srcs/checker_fold/manage_instructions.c \
 					srcs/checker_fold/check_if_ok.c
@@ -27,6 +26,7 @@ SRCS_SHARED		=	srcs/instructions/s.c \
 					srcs/utils/check_params.c \
 					srcs/utils/fail.c \
 					srcs/utils/print_lists.c \
+					srcs/utils/print_instructions.c \
 					srcs/utils/ft_atoi_pushswap.c \
 					srcs/utils/ft_strdup_pushswap.c \
 					srcs/utils/ft_putnbr_fd_pushswap.c
