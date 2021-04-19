@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:33:58 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/16 17:12:23 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/19 16:57:06 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_lists
 {
 	long	*a;
 	long	*b;
+	long	*ref;
 	int		na;
 	int		nb;
 	int		nmax;
