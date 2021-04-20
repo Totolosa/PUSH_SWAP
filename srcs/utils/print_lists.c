@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 11:35:55 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/15 16:54:39 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/20 16:57:23 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	print_lists(t_lists list)
 	i = -1;
 	j = 0;
 	k = 0;
+	printf("LISTS : \n");
 	while (++i < max)
 	{
 		if (i >= max - list.na)

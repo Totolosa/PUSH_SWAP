@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:20:40 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/19 19:38:22 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/20 19:06:03 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,24 +85,24 @@ static void	add_one_ins(char *new_inst, t_lists *list)
 // 	*pivot = list->b[list->nb - 1];
 // }
 
-int sorted_list_a(long *list, int size)
+int sorted_list_a(t_lists *list)
 {
 	int i;
 
 	i = -1;
-	while (++i < size - 1)
-		if (list[i] > list[i + 1])
+	while (++i < list->na - 1)
+		if (list->a[i] > list->a[i + 1])
 			return (0);
 	return (1);
 }
 
-int sorted_list_b(long *list, int size)
+int sorted_list_b(t_lists *list)
 {
 	int i;
 
 	i = -1;
-	while (++i < size - 1)
-		if (list[i] < list[i + 1])
+	while (++i < list->nb - 1)
+		if (list->b[i] < list->b[i + 1])
 			return (0);
 	return (1);
 }
@@ -140,73 +140,172 @@ void sort_ref(t_lists *list)
 	printf("\n");
 }
 
-void init_sorting(t_lists *list)
+// void init_sorting(t_lists *list)
+// {
+// 	long mediane;
+// 	int i;
+	
+// //	place_mediane_pivot_a(&pivot, list);
+// 	mediane = list->ref[(list->na / 2) - 1];
+// 	printf("mediane = %ld, list->nmax = %d, \n", mediane, list->nmax);
+// 	i = -1;
+// 	while (++i < list->nmax)
+// 	{
+// 		if (list->a[0] > mediane )
+// 			add_one_ins("ra", list);
+// 		else if (list->a[0] < mediane)
+// 			add_one_ins("pb", list);
+// 		else if (list->a[0] == mediane )
+// 		{
+// 			add_one_ins("pb", list);
+// 			add_one_ins("rb", list);
+// 		}
+// 	}
+// 	printf("\nLists :\n");
+// 	print_lists(*list);
+// 	if (list->nb > 1 && list->na > 1 && list->b[0] < list->b[1] && list->a[0] > list->a[1])
+// 		add_one_ins("ss", list);
+// 	else if (list->nb > 1 && list->b[0] < list->b[1])
+// 		add_one_ins("sb", list);
+// 	else if (list->na > 1 && list->a[0] > list->a[1])
+// 		add_one_ins("sa", list);
+// 	add_one_ins("rrb", list);
+// 	printf("\nLists :\n");
+// 	print_lists(*list);
+// }
+
+
+
+void sort_all(int to_treat, t_lists *list)
 {
 	long mediane;
+	int pushed_to_a;
+	int rev_in_a;
+	int pushed_to_b;
+	int rev_in_b;
 	int i;
 	
-//	place_mediane_pivot_a(&pivot, list);
-	mediane = list->ref[(list->nmax / 2) - 1];
-	printf("mediane = %ld, list->nmax = %d, \n", mediane, list->nmax);
-	i = -1;
-	while (++i < list->nmax)
+	pushed_to_b = 0;
+	rev_in_a = 0;
+	// to_treat = list->na;
+	if (to_treat > 1)
 	{
-		if (list->a[0] > mediane )
-			add_one_ins("ra", list);
-		else if (list->a[0] < mediane)
-			add_one_ins("pb", list);
-		else if (list->a[0] == mediane )
+		if (to_treat == 2 && list->a[0] > list->a[1])
+			add_one_ins("sa", list);
+		else
 		{
-			add_one_ins("pb", list);
-			add_one_ins("rb", list);
+			if (to_treat % 2 == 0)
+				mediane = list->ref[(list->nb - 1 ) + to_treat / 2];
+			else
+				mediane = list->ref[list->nb + to_treat / 2];
+			i = -1;
+			while (++i < to_treat)
+			{
+				printf("list->a[0] = %ld, list->na = %d, list->nb = %d, mediane = %ld\n", list->a[0], list->na, list->nb, mediane);
+				if (list->a[0] > mediane)
+					add_one_ins("ra", list);
+				else
+				{
+					add_one_ins("pb", list);
+					pushed_to_b++;
+					if (list->b[0] == mediane && i != to_treat - 1)
+						add_one_ins("rb", list);
+				}
+			}
+			if (list->b[0] != mediane)
+				add_one_ins("rrb", list);
 		}
 	}
-	printf("\nLists :\n");
+	printf("pushed_to_b = %d\n", pushed_to_b);
 	print_lists(*list);
-	if (list->nb > 1 && list->na > 1 && list->b[0] < list->b[1] && list->a[0] > list->a[1])
-		add_one_ins("ss", list);
-	else if (list->nb > 1 && list->b[0] < list->b[1])
-		add_one_ins("sb", list);
-	else if (list->na > 1 && list->a[0] > list->a[1])
-		add_one_ins("sa", list);
-	add_one_ins("rrb", list);
-	printf("\nLists :\n");
+	print_instructions(*list);
+	printf("\n");
+	if (!sorted_list_a(list))
+		sort_all(list->na, list);
+	pushed_to_a = 0;
+	rev_in_b = 0;
+	if (pushed_to_b > 1)
+	{
+		if (pushed_to_b == 2 && list->b[0] < list->b[1])
+			add_one_ins("sb", list);
+		else
+		{
+			// if (to_treat % 2 == 0)
+			// 	mediane = list->ref[(list->nb - 1) - to_treat / 2];
+			// else
+			mediane = list->ref[(list->nb - 1) - pushed_to_b / 2];
+			i = -1;
+			while (++i < pushed_to_b)
+			{
+				printf("list->b[0] = %ld, list->na = %d, list->nb = %d, mediane = %ld\n", list->b[0], list->na, list->nb, mediane);
+				if (list->b[0] < mediane)
+				{
+					// if (!sorted_list_b(list))
+					// {
+						add_one_ins("rb", list);
+						rev_in_b++;
+					// }
+				}
+				else 
+				{
+					add_one_ins("pa", list);
+					pushed_to_a++;
+					if (list->a[0] == mediane && i != pushed_to_b - 1)
+						add_one_ins("ra", list);
+				}
+			}
+			if (list->a[0] != mediane)
+				add_one_ins("rra", list);
+			i = -1;
+			while(++i < rev_in_b)
+			{
+				add_one_ins("rrb", list);
+				add_one_ins("pa", list);
+			}
+		}
+	}
+	printf("pushed_to_a = %d\n", pushed_to_a);
 	print_lists(*list);
+		print_instructions(*list);
+	printf("\n");
+	if (!sorted_list_a(list))
+		sort_all(pushed_to_a, list);
+	// if (sorted_list_a(list) && sorted_list_b(list) )
+	// 	return;
 }
 
-void sort_b(t_lists *list)
-{
-	long mediane;
-	int to_treat;
-	int pushed_to_a;
-	int i;
+// void sort_b(t_lists *list)
+// {
+// 	long mediane;
+// 	int to_treat;
+// 	int pushed_to_a;
+// 	int i;
 	
-	pushed_to_a = 0;
-	to_treat = list->nb;
-	if (list->nb % 2 == 0)
-		mediane = list->ref[(list->nb / 2) - 1];
-	else
-		mediane = list->ref[list->nb / 2];
-	i = -1;
-	while (++i < to_treat)
-	{
-		printf("list->nb = %d, mediane = %ld\n", list->nb, mediane);
-		if (list->b[0] < mediane)
-			add_one_ins("rb", list);
-		else 
-		{
-			pushed_to_a++;
-			add_one_ins("pa", list);
-			if (list->a[0] == mediane )
-				add_one_ins("ra", list);
-		}
-	}
-	add_one_ins("rra", list);
-	printf("pushed_to_a = %d\n", pushed_to_a);
-	if (!sorted_list_b(list->b, list->nb))
-		sort_b(list);
-	
-}
+// 	pushed_to_a = 0;
+// 	to_treat = list->nb;
+// 	if (list->nb % 2 == 0)
+// 		mediane = list->ref[(list->nb / 2) - 1];
+// 	else
+// 		mediane = list->ref[list->nb / 2];
+// 	i = -1;
+// 	while (++i < to_treat)
+// 	{
+// 		printf("list->nb = %d, mediane = %ld\n", list->nb, mediane);
+// 		if (list->b[0] < mediane)
+// 			add_one_ins("rb", list);
+// 		else 
+// 		{
+// 			pushed_to_a++;
+// 			add_one_ins("pa", list);
+// 			if (list->a[0] == mediane )
+// 				add_one_ins("ra", list);
+// 		}
+// 	}
+// 	add_one_ins("rra", list);
+// 	printf("pushed_to_a = %d\n", pushed_to_a);
+// 	if (!sorted_list_b(list->b, list->nb))
+// 		sort_b(list);
+// }
 
 void	generate_list_inst(t_lists *list)
 {
@@ -214,7 +313,9 @@ void	generate_list_inst(t_lists *list)
 //	long pivot;
 
 	sort_ref(list);
-	init_sorting(list);
-	sort_b(list);
+//	init_sorting(list);
+	print_lists(*list);
+	if (!sorted_list_a(list))
+		sort_all(list->nmax, list);
 	print_lists(*list);
 }
