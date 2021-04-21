@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:33:58 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/21 17:47:43 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/21 18:58:56 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_res
 }	t_res;
 
 void	generate_list_inst(t_lists *list);
+void	sort_all(int to_treat, t_lists *list);
+void	sort_all2(int to_treat, t_lists *list);
 void	sort_a(int to_treat, t_res *res, t_lists *list);
 void	sort_b(int to_treat, t_res *res, t_lists *list);
 void	add_one_ins(char *new_inst, t_lists *list);

@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 12:04:35 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/21 18:01:44 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/21 19:58:29 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,11 @@ void	sort_a(int to_treat, t_res *res, t_lists *list)
 		}
 		if (list->b[0] != res->mediane)
 			add_one_ins("rrb", list);
+		i = -1;
+		if (res->rev_in_a < list->na)
+			while(++i < res->rev_in_a)
+				add_one_ins("rra", list);
+		// if (list->b[0] == res->mediane)
+		// 	add_one_ins("pa", list);
 	}
 }

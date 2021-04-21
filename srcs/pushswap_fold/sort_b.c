@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 12:15:39 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/21 17:59:23 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/21 19:43:20 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ void sort_b(int to_treat, t_res *res, t_lists *list)
 	
 	printf("SORT B : to_treat = %d\n", to_treat);
 	print_lists(*list);
-	if (sorted_list_b(to_treat, list))
+	if (to_treat == 1)
+		add_one_ins("pa", list);
+	else if (sorted_list_b(to_treat, list))
 		while (--to_treat >= 0)
 			add_one_ins("pa", list);
 	else if (to_treat == 2)

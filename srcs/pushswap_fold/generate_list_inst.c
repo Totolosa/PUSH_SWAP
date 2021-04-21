@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:20:40 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/21 17:52:31 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/21 19:14:04 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,29 @@ void sort_all(int to_treat, t_lists *list)
 	}
 	if (!sorted_list_a(list))
 		sort_all(list->na, list);
-	if (res.pushed_to_b > 1)
+	sort_all2(res.pushed_to_b, list);
+}
+	
+void sort_all2(int to_treat, t_lists *list)
+{
+	t_res res_b;
+	
+	ft_bzero(&res_b, sizeof(t_res));
+	if (to_treat > 0)
 	{
-		sort_b(res.pushed_to_b, &res, list);
+		sort_b(to_treat, &res_b, list);
 		print_instructions(*list);
 	}
-	if (!sorted_list_b(res.rev_in_b, list))
-		sort_b(res.rev_in_b, &res, list);
 	if (!sorted_list_a(list))
-		sort_all(res.pushed_to_a, list);
-	// if (sorted_list_a(list) && sorted_list_b(list) )
-	// 	return;
+		sort_all(res_b.pushed_to_a, list);
+	// if (!sorted_list_b(res_b.rev_in_b, list))
+	if (res_b.rev_in_b > 0)
+		sort_all2(res_b.rev_in_b, list);
+	
+	// if (!sorted_list_b(res.rev_in_b, list))
+	// 	sort_b(res.rev_in_b, &res, list);
+	// if (!sorted_list_a(list))
+	// 	sort_all(res.pushed_to_a, list);
 }
 
 void	generate_list_inst(t_lists *list)
