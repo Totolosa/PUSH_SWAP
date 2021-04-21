@@ -6,11 +6,24 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 12:15:39 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/21 19:43:20 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/21 20:34:26 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static int only_less(long mediane, t_lists *list)
+{
+	int i;
+	
+	if (list->nb == 0)
+		return (1);
+	i = -1;
+	while (++i < list->nb)
+		if (list->b[i] >= mediane)
+			return (0);
+	return (1);
+}
 
 static void special_three(t_lists *list)
 {
@@ -61,7 +74,7 @@ void sort_b(int to_treat, t_res *res, t_lists *list)
 		while (++i < to_treat)
 		{
 			printf("list->b[0] = %ld, list->na = %d, list->nb = %d, mediane = %ld\n", list->b[0], list->na, list->nb, res->mediane);
-			if (list->b[0] < res->mediane) // && !only_less(res->mediane, list))
+			if (list->b[0] < res->mediane && !only_less(res->mediane, list))
 			{
 				add_one_ins("rb", list);
 				res->rev_in_b++;
@@ -70,7 +83,7 @@ void sort_b(int to_treat, t_res *res, t_lists *list)
 			{
 				add_one_ins("pa", list);
 				res->pushed_to_a++;
-				if (list->a[0] == res->mediane && i != to_treat - 1)
+				if (list->a[0] == res->mediane && !only_less(res->mediane, list))
 					add_one_ins("ra", list);
 			}
 		}
