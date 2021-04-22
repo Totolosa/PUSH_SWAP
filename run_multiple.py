@@ -5,9 +5,9 @@ import os
 import shutil
 
 range_start = 0
-range_stop = 10
-longueur_liste = 10
-nombre_executions = 10
+range_stop = 500
+longueur_liste = 100
+nombre_executions = 20
 dir_name = 'results'
 
 def get_score(start, stop, n):

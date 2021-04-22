@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:33:58 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/21 18:58:56 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/22 14:57:11 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,20 @@ void	is_dup(t_lists *list, int argc);
 void	create_list_inst(t_lists *list);
 void	check_list_inst(t_lists *l);
 
+void	pa_inst(t_lists *list);
+void	pb_inst(t_lists *list);
 void	sa_inst(t_lists *list);
 void	sb_inst(t_lists *list);
 void	ss_inst(t_lists *list);
-void	pa_inst(t_lists *list);
-void	pb_inst(t_lists *list);
+void	check_if_ss(char *sx, t_lists *list);
 void	ra_inst(t_lists *list);
 void	rb_inst(t_lists *list);
 void	rr_inst(t_lists *list);
+int		check_if_rr(char *rx, t_lists *list);
 void	rra_inst(t_lists *list);
 void	rrb_inst(t_lists *list);
 void	rrr_inst(t_lists *list);
+int		check_if_rrr(char *rrx, t_lists *list);
 
 long	ft_atoi_pushswap(const char *str);
 char	*ft_strdup_pushswap(const char *s, t_list **free);

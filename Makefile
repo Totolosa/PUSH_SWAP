@@ -18,7 +18,8 @@ SRCS_PUSH		=	srcs/pushswap_fold/main.c \
 					srcs/pushswap_fold/generate_list_inst.c \
 					srcs/pushswap_fold/sort_a.c \
 					srcs/pushswap_fold/sort_b.c \
-					srcs/pushswap_fold/utils.c
+					srcs/pushswap_fold/utils.c \
+					srcs/pushswap_fold/check_double_ins.c
 SRCS_CHECK		= 	srcs/checker_fold/main.c \
 					srcs/checker_fold/manage_instructions.c \
 					srcs/checker_fold/check_if_ok.c

@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:20:40 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/21 19:14:04 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/22 17:05:47 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ void sort_ref(t_lists *list)
 			}
 		}
 	}
-	printf("ref :\n");
-	i = -1;
-	while (++i < list->nmax)
-		printf("%ld ", list->ref[i]);
-	printf("\n");
+	// printf("ref :\n");
+	// i = -1;
+	// while (++i < list->nmax)
+	// 	printf("%ld ", list->ref[i]);
+	// printf("\n");
 }
 
 void sort_all(int to_treat, t_lists *list)
@@ -53,10 +53,12 @@ void sort_all(int to_treat, t_lists *list)
 	if (to_treat > 1)
 	{
 		sort_a(to_treat, &res, list);
-		print_instructions(*list);
+		// print_instructions(*list);
+		// print_lists(*list);
+
 	}
 	if (!sorted_list_a(list))
-		sort_all(list->na, list);
+		sort_all(res.rev_in_a, list);
 	sort_all2(res.pushed_to_b, list);
 }
 	
@@ -68,7 +70,8 @@ void sort_all2(int to_treat, t_lists *list)
 	if (to_treat > 0)
 	{
 		sort_b(to_treat, &res_b, list);
-		print_instructions(*list);
+		// print_instructions(*list);
+		// print_lists(*list);
 	}
 	if (!sorted_list_a(list))
 		sort_all(res_b.pushed_to_a, list);
@@ -90,5 +93,5 @@ void	generate_list_inst(t_lists *list)
 	// if (sorted_list_a(list) && list->nb > 0 && sorted_list_b(list->nb, list))
 	// 	while (list->nb > 0)
 	// 		add_one_ins("pa", list);
-	print_lists(*list);
+	// print_lists(*list);
 }
