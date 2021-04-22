@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:20:40 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/22 17:05:47 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/22 22:14:33 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,3 +95,5 @@ void	generate_list_inst(t_lists *list)
 	// 		add_one_ins("pa", list);
 	// print_lists(*list);
 }
+
+//make && ./push_swap 15 14 13 10 12 9 11 8 0 3 7 2 1 5 6 4 20 -1 16 -5 19 -2 -4 18 17 -3 -6 -34647 -32747 474 46449

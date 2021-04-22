@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 12:04:35 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/22 19:53:45 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/22 22:12:20 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void	sort_a(int to_treat, t_res *res, t_lists *list)
 {
 	int i;
 	
-	// printf("SORT A : to_treat = %d\n", to_treat);
-	// print_lists(*list);
+	printf("SORT A : to_treat = %d\n", to_treat);
+	print_lists(*list);
 	if (to_treat == 2 && list->a[0] > list->a[1])
 		add_one_ins("sa", list);
 		// check_if_ss("sa", list );
@@ -96,14 +96,14 @@ void	sort_a(int to_treat, t_res *res, t_lists *list)
 		while (to_treat > 0)
 		{
 			// printf("list->a[0] = %ld, list->na = %d, list->nb = %d, mediane = %ld\n", list->a[0], list->na, list->nb, res->mediane);
-			// if (only_sup(res->mediane, list))
-			// {
-			// 	add_one_ins("ra", list);
-			// 	res->rev_in_a += (to_treat);
-			// 	to_treat = 1;
-			// }
-			// else if (list->a[0] > res->mediane)
-			if (list->a[0] > res->mediane)
+			if (only_sup(res->mediane, list))
+			{
+				add_one_ins("ra", list);
+				res->rev_in_a += (to_treat);
+				to_treat = 1;
+			}
+			else if (list->a[0] > res->mediane)
+			// if (list->a[0] > res->mediane)
 			{
 				add_one_ins("ra", list);
 				// check_if_rr("ra", list);
