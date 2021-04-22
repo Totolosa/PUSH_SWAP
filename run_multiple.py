@@ -4,10 +4,10 @@ import statistics
 import os
 import shutil
 
-range_start = 0
-range_stop = 500
-longueur_liste = 100
-nombre_executions = 20
+range_start = -1000
+range_stop = 1000
+longueur_liste = 500
+nombre_executions = 10
 dir_name = 'results'
 
 def get_score(start, stop, n):
