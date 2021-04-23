@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:23:02 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/22 15:28:45 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/23 13:23:28 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,11 @@ void	print_instructions(t_lists list)
 		write(1, list.ins[i], ft_strlen(list.ins[i]));
 		write(1, "\n", 1);
 	}
+}
+
+void	print_nb_instructions(t_lists *list)
+{
+	write(1, "NOMBRE INSTR = ", 15);
+	ft_putnbr_fd(list->n_ins, 1);
+	write(1, "\n", 1);
 }

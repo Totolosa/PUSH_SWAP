@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:33:58 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/22 14:57:11 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/23 13:23:48 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	ft_putnbr_fd_pushswap(long n, int fd);
 void	fail(t_lists *list);
 void	error_gnl(char **line, t_lists *list);
 void	print_lists(t_lists list);
+void	print_nb_instructions(t_lists *list);
 void	print_instructions(t_lists list);
 
 #endif
