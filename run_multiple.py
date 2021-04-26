@@ -28,19 +28,21 @@ if os.path.isdir(dir_name):
 os.mkdir(dir_name)
 
 for i, (score, algo_in, algo_out) in enumerate(scores_in_out):
-	fin = open(os.path.join(dir_name, str(i) + '_in_score_' + str(score)), 'w')
-	fin.write(str(algo_in))
+	# fin = open(os.path.join(dir_name, str(i) + '_in_score_' + str(score)), 'w')
+	fin = open(os.path.join(dir_name, str(i) + '_in'), 'w')
+	fin.write(' '.join(algo_in))
 	fin.close()
-	fout = open(os.path.join(dir_name, str(i) + '_out_score_' + str(score)), 'w')
+	# fout = open(os.path.join(dir_name, str(i) + '_out_score_' + str(score)), 'w')
+	fout = open(os.path.join(dir_name, str(i) + '_out'), 'w')
 	fout.write(algo_out)
 	fout.close()
 
 scores, _, _ = zip(*scores_in_out)
 
-f = open(os.path.join(dir_name,'stats'), 'w')
+f = open(os.path.join(dir_name,'moyenne'), 'w')
 f.write("moyenne :" + str(statistics.mean(scores)) + '\n')
-f.write("max :" + str(max(scores)))
+# f.write("max :" + str(max(scores)))
 f.close()
 
 print("moyenne :", statistics.mean(scores))
-print("max :", max(scores))
+# print("max :", max(scores))

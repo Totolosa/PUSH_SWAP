@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:23:02 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/23 13:23:28 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/23 19:10:44 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 void	print_instructions(t_lists list)
 {
-	int i;
+	int	i;
 
 	i = -1;
-	// write(1, "INSTRUCTIONS :\n", 15);
 	while (++i < list.n_ins)
 	{
 		write(1, list.ins[i], ft_strlen(list.ins[i]));

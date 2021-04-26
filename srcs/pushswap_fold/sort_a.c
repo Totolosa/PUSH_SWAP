@@ -6,65 +6,16 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 12:04:35 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/23 13:58:58 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/26 16:05:16 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void bloc_of_three(t_lists *list)
+static int	only_sup(long mediane, t_lists *list)
 {
-	if (list->a[0] > list->a[1] && list->a[0] < list->a[2])
-		add_one_ins("sa", list);
-		// check_if_ss("sa", list);
-	else if (list->a[2] > list->a[0] && list->a[2] < list->a[1])
-	{
-		add_one_ins("pb", list);
-		add_one_ins("sa", list);
-		// check_if_ss("sa", list);
-		add_one_ins("pa", list);
-	}
-	else if (list->a[0] < list->a[1] && list->a[0] > list->a[2])
-	{
-		add_one_ins("ra", list);
-		// check_if_rr("ra", list);
-		add_one_ins("sa", list);
-		// check_if_ss("sa", list);
-		add_one_ins("rra", list);
-		// check_if_rrr("rra", list);
-		add_one_ins("sa", list);
-		// check_if_ss("sa", list);
-	}
-	else if (list->a[2] > list->a[1] && list->a[2] < list->a[0])
-	{
-		add_one_ins("ra", list);
-		// check_if_rr("ra", list);
-		add_one_ins("pb", list);
-		add_one_ins("rra", list);
-		// check_if_rrr("rra", list);
-		add_one_ins("sa", list);
-		// check_if_ss("sa", list);
-		add_one_ins("pa", list);
-	}
-	else if (list->a[1] > list->a[2] && list->a[1] < list->a[0])
-	{
-		add_one_ins("ra", list);
-		// check_if_rr("ra", list);
-		add_one_ins("pb", list);
-		add_one_ins("rra", list);
-		// check_if_rrr("rra", list);
-		add_one_ins("sa", list);
-		// check_if_ss("sa", list);
-		add_one_ins("pa", list);
-		add_one_ins("sa", list);
-		// check_if_ss("sa", list);
-	}
-}
+	int	i;
 
-static int only_sup(long mediane, t_lists *list)
-{
-	int i;
-	
 	i = -1;
 	while (++i < list->na)
 		if (list->a[i] <= mediane)
@@ -72,57 +23,56 @@ static int only_sup(long mediane, t_lists *list)
 	return (1);
 }
 
+static void	repartition_values_a(int to_treat, t_res *res, t_lists *list)
+{
+	int	i;
+
+	i = -1;
+	while (++i < to_treat)
+	{
+		if (only_sup(res->mediane, list))
+		{
+			if (list->a[0] > list->a[1])
+				check_if_ss("sa", list);
+			i = to_treat;
+		}
+		else if (list->a[0] > res->mediane)
+		{
+			add_one_ins("ra", list);
+			res->rev_in_a++;
+		}
+		else if (list->a[0] <= res->mediane)
+		{
+			add_one_ins("pb", list);
+			res->pushed_to_b++;
+			if (list->b[0] == res->mediane && list->nb > 1
+				&& !only_sup(res->mediane, list))
+				add_one_ins("rb", list);
+		}
+	}
+}
+
 void	sort_a(int to_treat, t_res *res, t_lists *list)
 {
-	int i;
-	
-	// printf("SORT A : to_treat = %d\n", to_treat);
-	// print_lists(*list);
+	int	i;
+
 	if (to_treat == 2 && list->a[0] > list->a[1])
-		add_one_ins("sa", list);
-		// check_if_ss("sa", list );
+		check_if_ss("sa", list);
 	else if (to_treat == 3)
-	{
-		if (list->na >= 3)
-			bloc_of_three(list);
-	}
+		bloc_of_three_a(list);
 	else
 	{
 		if (to_treat % 2 == 0)
 			res->mediane = list->ref[(list->nb + to_treat / 2) - 1];
 		else
 			res->mediane = list->ref[list->nb + to_treat / 2];
-		// printf("mediane = %ld\n", res->mediane);
-		i = -1;
-		while (++i < to_treat)
-		{
-			if (only_sup(res->mediane, list))
-				i = to_treat;
-			else if (list->a[0] > res->mediane)
-			// if (list->a[0] > res->mediane)
-			{
-				add_one_ins("ra", list);
-				// check_if_rr("ra", list);
-				res->rev_in_a++;
-			}
-			else if (list->a[0] <= res->mediane)
-			{
-				add_one_ins("pb", list);
-				res->pushed_to_b++;
-				if (list->b[0] == res->mediane && !only_sup(res->mediane, list))
-					add_one_ins("rb", list);
-					// if (check_if_rr("rb", list) == 1)
-					// 	res->rev_in_a++;
-			}
-		}
+		repartition_values_a(to_treat, res, list);
 		if (list->b[0] != res->mediane)
 			add_one_ins("rrb", list);
-			// check_if_rrr("rrb", list);
-		// printf("rev_in_a = %d, pushed_to_b = %d, list->na = %d, mediane = %ld\n", res->rev_in_a, res->pushed_to_b, list->na, res->mediane);
 		i = -1;
 		if (to_treat - res->pushed_to_b < list->na)
-			while(++i < res->rev_in_a)// && list->a[list->na - 1] < list->a[0])
+			while (++i < res->rev_in_a)
 				add_one_ins("rra", list);
-		res->rev_in_a = to_treat - res->pushed_to_b;
 	}
+	res->rev_in_a = to_treat - res->pushed_to_b;
 }

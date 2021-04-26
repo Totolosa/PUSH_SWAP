@@ -6,58 +6,67 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:33:58 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/23 13:23:48 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/26 17:39:26 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include "libft.h"
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
+# include "libft.h"
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <limits.h>
 
-# define NAN ((long long)INT_MAX + (long long)1)
+# define NAN (long long)2147483648
 
 typedef struct s_lists
 {
 	long	*a;
-	long	*b;
-	long	*ref;
 	int		na;
+	long	*b;
 	int		nb;
+	long	*cpy_a;
+	int		cpy_na;
+	long	*cpy_b;
+	int		cpy_nb;
+	long	*ref;
 	int		nmax;
 	char	**ins;
 	int		n_ins;
+	int		show_stack;
+	int		show_repartition;
+	char	prog;
 	t_list	*free;
 }	t_lists;
 
 typedef struct s_res
 {
-	long mediane;
-	int pushed_to_a;
-	int rev_in_a;
-	int pushed_to_b;
-	int rev_in_b;
+	long	mediane;
+	int		pushed_to_a;
+	int		rev_in_a;
+	int		pushed_to_b;
+	int		rev_in_b;
 }	t_res;
+
+void	isaint(t_lists *list, int argc, char **argv);
+void	create_lists(t_lists *list, int argc, char **argv);
+void	is_dup(t_lists *list);
+void	create_list_inst(t_lists *list);
+void	check_list_inst(t_lists *l);
 
 void	generate_list_inst(t_lists *list);
 void	sort_all(int to_treat, t_lists *list);
 void	sort_all2(int to_treat, t_lists *list);
 void	sort_a(int to_treat, t_res *res, t_lists *list);
 void	sort_b(int to_treat, t_res *res, t_lists *list);
+void	bloc_of_three_a(t_lists *list);
+void	bloc_of_three_b(t_lists *list);
 void	add_one_ins(char *new_inst, t_lists *list);
 int		sorted_list_a(t_lists *list);
 int		sorted_list_b(int interval, t_lists *list);
 void	check_if_ok(t_lists *list);
-
-void	isaint(t_lists *list, int argc, char **argv);
-void	create_lists(t_lists *list, int argc, char **argv);
-void	is_dup(t_lists *list, int argc);
-void	create_list_inst(t_lists *list);
-void	check_list_inst(t_lists *l);
 
 void	pa_inst(t_lists *list);
 void	pb_inst(t_lists *list);
@@ -79,7 +88,11 @@ char	*ft_strdup_pushswap(const char *s, t_list **free);
 void	ft_putnbr_fd_pushswap(long n, int fd);
 void	fail(t_lists *list);
 void	error_gnl(char **line, t_lists *list);
-void	print_lists(t_lists list);
+void	special_sort(t_lists *list);
+void	print_stack(t_lists list);
+void	copy_lists_before_repartition(t_lists *list);
+void	print_repartition_a(int to_treat, t_res res, t_lists list);
+void	print_repartition_b(int to_treat, t_res res, t_lists list);
 void	print_nb_instructions(t_lists *list);
 void	print_instructions(t_lists list);
 

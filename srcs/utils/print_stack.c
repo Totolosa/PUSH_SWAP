@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fail.c                                             :+:      :+:    :+:   */
+/*   print_stack.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 11:35:55 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/23 19:10:18 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/26 16:45:02 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "push_swap.h"
 
-void	fail(t_lists *list)
+void	print_stack(t_lists list)
 {
-	ft_putstr_fd("Error\n", STDERR_FILENO);
-	ft_lstclear(&list->free, free);
-	exit (1);
-}
+	int	i;
 
-void	error_gnl(char **line, t_lists *list)
-{
-	free(*line);
-	fail(list);
+	if (list.ins[list.n_ins - 1][2] != '\0')
+		write(1, "  \033[36m-->\033[0m   ", 16);
+	else
+		write(1, "   \033[36m-->\033[0m   ", 17);
+	if (list.nb > 0)
+	{
+		i = list.nb - 1;
+		while (i >= 0)
+			ft_putnbr_fd_pushswap(list.b[i--], 1);
+	}
+	write(1, "\033[33m||\033[0m ", 12);
+	if (list.na > 0)
+	{
+		i = -1;
+		while (++i < list.na)
+			ft_putnbr_fd_pushswap(list.a[i], 1);
+		write(1, "\n", 1);
+	}
 }

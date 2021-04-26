@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 17:51:01 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/14 19:09:51 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/23 18:59:08 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static void	do_instruction(int i, t_lists *l)
 
 static int	check_sorting(t_lists *list)
 {
-	int i;
-	
+	int	i;
+
 	i = -1;
 	while (++i < list->nmax)
 		if (list->b[i] != NAN)
@@ -55,13 +55,13 @@ static int	check_sorting(t_lists *list)
 
 void	check_if_ok(t_lists *list)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < list->n_ins)
 		do_instruction(i, list);
 	if (check_sorting(list) == 1)
 		write(1, "OK\n", 3);
-	else 
+	else
 		write(1, "KO\n", 3);
 }

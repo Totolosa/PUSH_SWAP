@@ -19,7 +19,7 @@ SRCS_PUSH		=	srcs/pushswap_fold/main.c \
 					srcs/pushswap_fold/sort_a.c \
 					srcs/pushswap_fold/sort_b.c \
 					srcs/pushswap_fold/utils.c \
-					srcs/pushswap_fold/check_double_ins.c
+					srcs/pushswap_fold/sort_pack_of_3.c
 SRCS_CHECK		= 	srcs/checker_fold/main.c \
 					srcs/checker_fold/manage_instructions.c \
 					srcs/checker_fold/check_if_ok.c
@@ -29,7 +29,8 @@ SRCS_SHARED		=	srcs/instructions/s.c \
 					srcs/instructions/rr.c \
 					srcs/utils/check_params.c \
 					srcs/utils/fail.c \
-					srcs/utils/print_lists.c \
+					srcs/utils/print_stack.c \
+					srcs/utils/print_repartition.c \
 					srcs/utils/print_instructions.c \
 					srcs/utils/ft_atoi_pushswap.c \
 					srcs/utils/ft_strdup_pushswap.c \
@@ -40,7 +41,7 @@ OBJS_PUSH		= ${SRCS_PUSH:srcs/%.c=$(OBJS_DIR)/%.o} ${OBJS_SHARED}
 OBJS_CHECK		= ${SRCS_CHECK:srcs/%.c=$(OBJS_DIR)/%.o} ${OBJS_SHARED}
 OBJS_DIR		= objs
 CC				= gcc
-CFLAGS			= -Wall -Werror -Wextra -fsanitize=address -g3
+CFLAGS			= -Wall -Werror -Wextra # -fsanitize=address -g3
 INCLUDE			= -Iinclude -I${LIBFT}/include
 RM				= rm -rf
 MKDIR			= mkdir -p

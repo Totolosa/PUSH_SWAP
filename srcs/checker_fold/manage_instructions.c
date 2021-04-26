@@ -6,13 +6,13 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 17:45:56 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/15 17:59:38 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/26 17:53:15 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static char **update_list_inst(char **line, t_lists *list)
+static char	**update_list_inst(char **line, t_lists *list)
 {
 	char	**new;
 	int		i;
@@ -28,10 +28,10 @@ static char **update_list_inst(char **line, t_lists *list)
 	return (new);
 }
 
-void create_list_inst(t_lists *list)
+void	create_list_inst(t_lists *list)
 {
-	int ret;
-	char *line;
+	int		ret;
+	char	*line;
 
 	line = NULL;
 	ret = get_next_line(STDIN_FILENO, &line);
@@ -42,11 +42,12 @@ void create_list_inst(t_lists *list)
 	}
 	if (ret == -1)
 		return (error_gnl(&line, list));
+	free(line);
 }
 
-void check_list_inst(t_lists *l)
+void	check_list_inst(t_lists *l)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < l->n_ins)

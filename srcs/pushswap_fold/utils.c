@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 12:29:17 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/22 14:01:15 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/26 14:18:48 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,14 @@ static void	do_instruction(char *str, t_lists *l)
 		rrb_inst(l);
 	else if (str[0] == 'r' && str[1] == 'r' && str[2] == 'r')
 		rrr_inst(l);
+	if (l->show_stack)
+		print_stack(*l);
 }
 
 void	add_one_ins(char *new_inst, t_lists *list)
 {
-	char **new;
-	int i;
+	char	**new;
+	int		i;
 
 	new = calloc_lst((list->n_ins + 1) * sizeof(char *), &list->free);
 	i = -1;
@@ -53,9 +55,9 @@ void	add_one_ins(char *new_inst, t_lists *list)
 	do_instruction(new_inst, list);
 }
 
-int sorted_list_a(t_lists *list)
+int	sorted_list_a(t_lists *list)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < list->na - 1)
@@ -64,13 +66,27 @@ int sorted_list_a(t_lists *list)
 	return (1);
 }
 
-int sorted_list_b(int interval, t_lists *list)
+int	sorted_list_b(int interval, t_lists *list)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < interval - 1)
 		if (list->b[i] < list->b[i + 1])
 			return (0);
 	return (1);
+}
+
+void	check_if_ss(char *sx, t_lists *list)
+{
+	if (list->na > 1 && list->nb > 1
+		&& list->a[0] > list->a[1] && list->b[0] < list->b[1])
+		add_one_ins("ss", list);
+	else
+	{
+		if (sx[1] == 'a')
+			add_one_ins("sa", list);
+		else if (sx[1] == 'b')
+			add_one_ins("sb", list);
+	}
 }
