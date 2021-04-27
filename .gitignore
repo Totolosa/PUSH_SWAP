@@ -5,3 +5,4 @@ objs/
 checker
 push_swap
 results
+*.pdf

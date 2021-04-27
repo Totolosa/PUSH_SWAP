@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 15:44:54 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/27 13:39:41 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/27 17:53:24 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,16 @@ void	check_option(int argc, char **argv, t_lists *list)
 	{
 		if (argv[1][0] == '-' && argv[1][1] == 'v' && argv[1][2] == '\0')
 			list->show_stack = 1;
-		else if (argv[1][0] == '-' && argv[1][1] == 'c' && argv[1][2] == '\0')
+		else if (list->prog == 'p'
+			&& argv[1][0] == '-' && argv[1][1] == 'c' && argv[1][2] == '\0')
 			list->show_repartition = 1;
 	}
 	if (argc > 2)
 	{
 		if (argv[2][0] == '-' && argv[2][1] == 'v' && argv[2][2] == '\0')
 			list->show_stack = 1;
-		else if (argv[2][0] == '-' && argv[2][1] == 'c' && argv[2][2] == '\0')
+		else if (list->prog == 'p'
+			&& argv[2][0] == '-' && argv[2][1] == 'c' && argv[2][2] == '\0')
 			list->show_repartition = 1;
 	}
 	if (!ft_strncmp(argv[argc - 1], "args.txt", 9))
