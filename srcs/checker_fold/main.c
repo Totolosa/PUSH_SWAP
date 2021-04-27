@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 15:48:03 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/27 13:39:35 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/27 15:09:21 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,3 @@ int	main(int argc, char **argv)
 	ft_lstclear(&list.free, free);
 	return (0);
 }
-
-// A FAIRE :
-// - finir checker --> OK
-// - creer obj pour .o dans libft et dosier general --> OK
-// - algo pushswap --> OK
-// - MAJ LIBFT Github
