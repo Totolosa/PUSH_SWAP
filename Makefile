@@ -28,6 +28,7 @@ SRCS_SHARED		=	srcs/instructions/s.c \
 					srcs/instructions/r.c \
 					srcs/instructions/rr.c \
 					srcs/utils/check_params.c \
+					srcs/utils/check_params_file.c \
 					srcs/utils/fail.c \
 					srcs/utils/print_stack.c \
 					srcs/utils/print_repartition.c \

@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 12:29:17 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/26 14:18:48 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/27 13:06:47 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	do_instruction(char *str, t_lists *l)
 	else if (str[0] == 'r' && str[1] == 'r' && str[2] == 'r')
 		rrr_inst(l);
 	if (l->show_stack)
-		print_stack(*l);
+		print_stack(l->n_ins - 1, *l);
 }
 
 void	add_one_ins(char *new_inst, t_lists *list)

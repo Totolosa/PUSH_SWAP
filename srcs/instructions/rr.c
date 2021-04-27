@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 11:31:36 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/26 17:43:36 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/27 12:40:44 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	rrb_inst(t_lists *list)
 		list->b[0] = tmp;
 		if (list->prog == 'p')
 		{
-			write(1, "rra", 3);
+			write(1, "rrb", 3);
 			if (list->show_stack == 0)
 				write(1, "\n", 1);
 		}

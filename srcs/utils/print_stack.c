@@ -6,17 +6,17 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 11:35:55 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/26 16:45:02 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/27 13:07:55 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_stack(t_lists list)
+void	print_stack(int indice, t_lists list)
 {
 	int	i;
 
-	if (list.ins[list.n_ins - 1][2] != '\0')
+	if (list.ins[indice][2] != '\0')
 		write(1, "  \033[36m-->\033[0m   ", 16);
 	else
 		write(1, "   \033[36m-->\033[0m   ", 17);

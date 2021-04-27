@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:33:58 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/26 17:39:26 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/27 13:07:13 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_lists
 	int		n_ins;
 	int		show_stack;
 	int		show_repartition;
+	int		args_in_file;
 	char	prog;
 	t_list	*free;
 }	t_lists;
@@ -50,9 +51,9 @@ typedef struct s_res
 	int		rev_in_b;
 }	t_res;
 
-void	isaint(t_lists *list, int argc, char **argv);
-void	create_lists(t_lists *list, int argc, char **argv);
-void	is_dup(t_lists *list);
+void	check_option(int argc, char **argv, t_lists *list);
+void	check_parameters_file(int argc, char **argv, t_lists *list);
+void	check_parameters_main(int argc, char **argv, t_lists *list);
 void	create_list_inst(t_lists *list);
 void	check_list_inst(t_lists *l);
 
@@ -89,7 +90,7 @@ void	ft_putnbr_fd_pushswap(long n, int fd);
 void	fail(t_lists *list);
 void	error_gnl(char **line, t_lists *list);
 void	special_sort(t_lists *list);
-void	print_stack(t_lists list);
+void	print_stack(int indice, t_lists list);
 void	copy_lists_before_repartition(t_lists *list);
 void	print_repartition_a(int to_treat, t_res res, t_lists list);
 void	print_repartition_b(int to_treat, t_res res, t_lists list);
