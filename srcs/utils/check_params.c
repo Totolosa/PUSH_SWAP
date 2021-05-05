@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 15:44:54 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/27 17:53:24 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/05/05 15:23:28 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ static void	isaint_main(t_lists *list, int argc, char **argv)
 	{
 		j = 0;
 		if (argv[i][j] == '-')
+		{
 			j++;
+			if (argv[i][j] == '\0')
+				fail(list);
+		}
 		while (argv[i][j])
 			if (!ft_isdigit(argv[i][j++]))
 				fail(list);

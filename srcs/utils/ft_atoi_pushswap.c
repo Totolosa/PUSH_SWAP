@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 14:03:48 by tdayde            #+#    #+#             */
-/*   Updated: 2021/04/12 23:37:39 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/05/05 15:18:43 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,10 @@ long long	ft_atoi_pushswap(const char *str)
 	}
 	while (ft_isdigit(str[i]))
 	{
-		result = 10 * result + (str[i] - '0');
+		result = 10 * result + (str[i] - '0') * sign;
 		if (result > 2147483647 || result < -2147483648)
 			return (2147483648);
 		i++;
 	}
-	result *= sign;
 	return (result);
 }
